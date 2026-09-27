@@ -23,8 +23,40 @@ const getWeather = async (city) => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
 
     const data = await res.json();
-    return console.log(data);
+    return data
   } catch (err) {
     console.log(err)
   }
 }
+
+const showWeather = async (city) => { 
+  try {
+    const data = await getWeather(city);
+
+    if (data.weather[0].main === 'Clear') {
+      weatherIcon.textContent = weatherIcons.sunny
+    } else if (data.weather[0].main === 'Clouds') {
+      weatherIcon.textContent = weatherIcons.cloudy
+    } else if (data.weather[0].main === 'Rain') {
+      weatherIcon.textContent = weatherIcons.rainy
+    } else if (data.weather[0].main === 'Snow') {
+      weatherIcon.textContent = weatherIcons.snowy
+    } else if (data.weather[0].main === 'Thunderstorm') {
+      weatherIcon.textContent = weatherIcons.thunderstorm
+    } else {
+      weatherIcon.textContent = weatherIcons.sunny
+    }
+
+    temp.textContent = `${Math.floor(data.main.temp)}°C`
+    cityName.textContent = data.name;
+    desc.textContent = data.weather[0].main;
+    humidity.textContent = `${data.main.humidity}%`;
+    windSpeed.textContent = `${Math.floor(data.wind.speed)} km/h`;
+    tempMax.textContent = `${Math.floor(data.main.temp_max)}°C`;
+    tempMin.textContent = `${Math.floor(data.main.temp_min)}°C`;
+  } catch (err) {
+    alert('Something went wrong, please try again later');
+    console.log(err)
+  }
+}
+
