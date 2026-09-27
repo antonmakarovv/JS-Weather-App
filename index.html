@@ -8,29 +8,38 @@
 </head>
 <body>
   <main>
+    <h1>Weather App</h1>
     <div class="app-container">
-      <input type="text" name="city-name" class="city-name-input" />
+      <input placeholder="Enter city name" type="text" name="city-name" class="city-name-input" />
       <button type="button" class="get-weather-btn">
-        <img src="Weather-App/icons/magnifier.png" alt="Magnifier Icon" width="20">
+        <img src="Weather-App/icons/magnifier.png" alt="Magnifier Icon" width="15.5">
       </button>
       <div class="weather-container">
         <div class="main-weather-page">
-           <span class="weather-icon"></span>
-           <span class="temperature"></span>
-           <span class="city-name"></span>
-           <span class="description"></span>
+           <div class="weather-icon"></div>
+           <div class="temperature"></div>
+           <div class="city-name"></div>
+           <div class="description"></div>
         </div>
         <div class="second-weather-page">
-          <span class="detail humidity-icon">💧</span>
-          <span class="humidity"></span>
-          <span class="detail wind-speed-icon">💨</span>
-          <span class="wind-speed"></span>
-          <span class="detail temp-max">⬆️</span>
-          <span class="temp-max"></span>
-          <span class="detail temp-min-icon">⬇️</span>
-          <span class="temp-min"></span>
+          <div>
+            <p class="detail humidity-icon">💧</p>
+            <p class="data humidity"></p>
+          </div>
+          <div>
+            <p class="detail wind-speed-icon">💨</p>
+            <p class="data wind-speed"></p>
+          </div>
+          <div>
+            <p class="detail temp-max-icon">⬆️</p>
+            <p class="data temp-max"></p>
+          </div>
+          <div>
+            <p class="detail temp-min-icon">⬇️</p>
+            <p class="data temp-min"></p>
+          </div>
+          
         </div>
-      </div>
     </div>
   </main>
   <script src="Weather-App/script.js"></script>
