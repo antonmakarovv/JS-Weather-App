@@ -4,13 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
+  <link rel="stylesheet" href="Weather-App/styles.css">
 </head>
 <body>
   <main>
     <div class="app-container">
       <input type="text" name="city-name" class="city-name-input" />
-      <button type="button" class="get-weather-btn"></button>
+      <button type="button" class="get-weather-btn">
+        <img src="Weather-App/icons/magnifier.png" alt="Magnifier Icon" width="20">
+      </button>
+      <div class="weather-container">
+        <div class="main-weather-page">
+           <span class="weather-icon"></span>
+           <span class="temperature"></span>
+           <span class="city-name"></span>
+           <span class="description"></span>
+        </div>
+        <div class="second-weather-page">
+          <span class="detail humidity-icon">💧</span>
+          <span class="humidity"></span>
+          <span class="detail wind-speed-icon">💨</span>
+          <span class="wind-speed"></span>
+          <span class="detail temp-max">⬆️</span>
+          <span class="temp-max"></span>
+          <span class="detail temp-min-icon">⬇️</span>
+          <span class="temp-min"></span>
+        </div>
+      </div>
     </div>
   </main>
+  <script src="Weather-App/script.js"></script>
 </body>
 </html>
