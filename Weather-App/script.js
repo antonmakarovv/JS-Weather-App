@@ -16,6 +16,8 @@ const humidity = document.querySelector('.humidity');
 const windSpeed = document.querySelector('.wind-speed');
 const tempMax = document.querySelector('.temp-max');
 const tempMin = document.querySelector('.temp-min');
+const inputCity = document.querySelector('.city-name-input'); 
+const getWeatherBtn = document.querySelector('.get-weather-btn');
 
 const getWeather = async (city) => {
   try {
@@ -60,3 +62,22 @@ const showWeather = async (city) => {
   }
 }
 
+const reset = () => {
+  weatherIcon.textContent = ''
+  temp.textContent = ``
+  cityName.textContent = '';
+  desc.textContent = '';
+  humidity.textContent = ``;
+  windSpeed.textContent = ``;
+  tempMax.textContent = ``;
+  tempMin.textContent = ``;
+}
+
+getWeatherBtn.addEventListener('click', () => {
+  if (inputCity.value !== '') {
+    showWeather(inputCity.value);
+  } else {
+    reset()
+    cityName.textContent = 'Uncorrect Value';
+  }
+})
