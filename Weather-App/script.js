@@ -1,4 +1,4 @@
-require('dotenv').config()
+const apiKey = '979be1a22b1f2dd833f21079b3a21c11';
 
 const weatherIcons = {
   sunny: '☀️', 
@@ -22,7 +22,8 @@ const getWeatherBtn = document.querySelector('.get-weather-btn');
 const getWeather = async (city) => {
   try {
     const res = await 
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.API_KEY}`);
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+
     const data = await res.json();
     return data
   } catch (err) {
@@ -34,24 +35,20 @@ const showWeather = async (city) => {
   try {
     const data = await getWeather(city);
 
-    switch (data.weather[0].main) {
-      case ('Clouds'):
-        weatherIcon.textContent = weatherIcons.cloudy;
-        break
-      case ('Rain'):
-        weatherIcon.textContent = weatherIcons.rainy;
-        break
-      case ('Snow'):
-        weatherIcon.textContent = weatherIcons.snowy;
-        break
-      case ('Storm'): 
-        weatherIcon.textContent = weatherIcons.thunderstorm;
-        break
-      default: 
-        weatherIcon.textContent = weatherIcons.sunny;
-        break
+    if (data.weather[0].main === 'Clear') {
+      weatherIcon.textContent = weatherIcons.sunny
+    } else if (data.weather[0].main === 'Clouds') {
+      weatherIcon.textContent = weatherIcons.cloudy
+    } else if (data.weather[0].main === 'Rain') {
+      weatherIcon.textContent = weatherIcons.rainy
+    } else if (data.weather[0].main === 'Snow') {
+      weatherIcon.textContent = weatherIcons.snowy
+    } else if (data.weather[0].main === 'Thunderstorm') {
+      weatherIcon.textContent = weatherIcons.thunderstorm
+    } else {
+      weatherIcon.textContent = weatherIcons.sunny
     }
- 
+
     temp.textContent = `${Math.floor(data.main.temp)}°C`
     cityName.textContent = data.name;
     desc.textContent = data.weather[0].main;
