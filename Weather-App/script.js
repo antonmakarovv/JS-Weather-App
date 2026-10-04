@@ -1,4 +1,4 @@
-const apiKey = '979be1a22b1f2dd833f21079b3a21c11';
+const apiKey = '';
 
 const weatherIcons = {
   sunny: '☀️', 
@@ -56,6 +56,8 @@ const showWeather = async (city) => {
     windSpeed.textContent = `${Math.floor(data.wind.speed)} km/h`;
     tempMax.textContent = `${Math.floor(data.main.temp_max)}°C`;
     tempMin.textContent = `${Math.floor(data.main.temp_min)}°C`;
+
+    localStorage.setItem('currentCity', city)
   } catch (err) {
     alert('Something went wrong, please try again later');
     console.log(err)
@@ -79,5 +81,17 @@ getWeatherBtn.addEventListener('click', () => {
   } else {
     reset()
     cityName.textContent = 'Uncorrect Value';
+  }
+})
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    showWeather(inputCity.value);
+  }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('currentCity') !== null) {
+    showWeather(localStorage.getItem('currentCity'))
   }
 })
